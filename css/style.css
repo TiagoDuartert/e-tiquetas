@@ -161,4 +161,27 @@ body {
 .status-saida-armazem {
     background-color: #f44336;
     color: white;
+}
+
+.table-responsive {
+    margin-top: 20px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.table th {
+    position: sticky;
+    top: 0;
+    background-color: #fff;
+    z-index: 1;
+}
+
+tr:nth-child(1) {
+    background-color: #f8f9fa;
+    animation: highlight 1s ease-out;
+}
+
+@keyframes highlight {
+    0% { background-color: #fff3cd; }
+    100% { background-color: #f8f9fa; }
 } 
