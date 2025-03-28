@@ -47,13 +47,13 @@
             projectId: "e-tiquetas",
             storageBucket: "e-tiquetas.firebasestorage.app",
             messagingSenderId: "428128437153",
-            appId: "1:428128437153:web:281c188305dec3f45641e0"
+            appId: "1:428128437153:web:281c188305dec3f45641e0",
+            measurementId: "G-KYX0QZ2XY1"
         };
 
         const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-        window.db = db;
+        window.db = getFirestore(app);
     </script>
-    <script src="js/index.js"></script>
+    <script src="js/index.js" type="module"></script>
 </body>
 </html> 
