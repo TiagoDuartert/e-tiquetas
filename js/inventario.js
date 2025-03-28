@@ -27,34 +27,36 @@ async function carregarMudanca() {
 
 // Formulário de Item
 const itemForm = document.getElementById('item-form');
-itemForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
-    const itemData = {
-        itemNumber: document.getElementById('itemNumber').value,
-        packType: document.getElementById('packType').value,
-        articleDescription: document.getElementById('articleDescription').value,
-        condition: document.getElementById('condition').value,
-        location: document.getElementById('location').value,
-        packedBy: document.getElementById('packedBy').value,
-        status: 'registrado',
-        dataRegistro: new Date(),
-        historico: [{
+if (itemForm) {
+    itemForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const itemData = {
+            itemNumber: document.getElementById('itemNumber').value,
+            packType: document.getElementById('packType').value,
+            articleDescription: document.getElementById('articleDescription').value,
+            condition: document.getElementById('condition').value,
+            location: document.getElementById('location').value,
+            packedBy: document.getElementById('packedBy').value,
             status: 'registrado',
-            timestamp: new Date(),
-            usuario: document.getElementById('packedBy').value
-        }]
-    };
-    
-    try {
-        await addDoc(collection(window.db, 'mudancas', mudancaId, 'items'), itemData);
-        itemForm.reset();
-        alert('Item registrado com sucesso!');
-    } catch (error) {
-        console.error('Erro ao registrar item:', error);
-        alert('Erro ao registrar item. Tente novamente.');
-    }
-});
+            dataRegistro: new Date(),
+            historico: [{
+                status: 'registrado',
+                timestamp: new Date(),
+                usuario: document.getElementById('packedBy').value
+            }]
+        };
+        
+        try {
+            await addDoc(collection(window.db, 'mudancas', mudancaId, 'items'), itemData);
+            itemForm.reset();
+            alert('Item registrado com sucesso!');
+        } catch (error) {
+            console.error('Erro ao registrar item:', error);
+            alert('Erro ao registrar item. Tente novamente.');
+        }
+    });
+}
 
 // Inicialização
 document.addEventListener('DOMContentLoaded', carregarMudanca); 

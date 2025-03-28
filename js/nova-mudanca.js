@@ -1,5 +1,4 @@
 import { collection, addDoc } from 'https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js';
-import { db } from '/js/firebase-config.js';
 
 const mudancaForm = document.getElementById('mudanca-form');
 
@@ -18,7 +17,7 @@ mudancaForm.addEventListener('submit', async (e) => {
     };
     
     try {
-        const docRef = await addDoc(collection(db, 'mudancas'), formData);
+        const docRef = await addDoc(collection(window.db, 'mudancas'), formData);
         // Redireciona para a página de inventário com o ID da mudança
         window.location.href = `inventario.html?id=${docRef.id}`;
     } catch (error) {

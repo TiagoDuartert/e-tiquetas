@@ -1,16 +1,15 @@
 import { collection, query, where, getDocs } from 'https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js';
-import { db } from './firebase-config.js';
 
 // Buscar tracking
 async function buscarTracking(numeroProcesso) {
     try {
-        const mudancaRef = collection(db, 'mudancas');
+        const mudancaRef = collection(window.db, 'mudancas');
         const q = query(mudancaRef, where('ref', '==', numeroProcesso));
         const mudancaSnap = await getDocs(q);
         
         if (!mudancaSnap.empty) {
             const mudanca = mudancaSnap.docs[0];
-            const itemsRef = collection(db, 'mudancas', mudanca.id, 'items');
+            const itemsRef = collection(window.db, 'mudancas', mudanca.id, 'items');
             const itemsSnap = await getDocs(itemsRef);
             
             const trackingList = document.getElementById('tracking-list');
@@ -51,20 +50,26 @@ function formatarStatus(status) {
 
 // Event listener para pesquisa
 const searchProcesso = document.getElementById('searchProcesso');
-searchProcesso.addEventListener('input', (e) => {
-    if (e.target.value.length >= 3) {
-        buscarTracking(e.target.value);
-    }
-});
+if (searchProcesso) {
+    searchProcesso.addEventListener('input', (e) => {
+        if (e.target.value.length >= 3) {
+            buscarTracking(e.target.value);
+        }
+    });
+}
 
 // Exportação PDF
-document.getElementById('exportarPDF').addEventListener('click', () => {
-    // TODO: Implementar exportação PDF
-    alert('Exportação PDF em desenvolvimento');
-});
+const exportarPDFBtn = document.getElementById('exportarPDF');
+if (exportarPDFBtn) {
+    exportarPDFBtn.addEventListener('click', () => {
+        alert('Exportação PDF em desenvolvimento');
+    });
+}
 
 // Exportação Excel
-document.getElementById('exportarExcel').addEventListener('click', () => {
-    // TODO: Implementar exportação Excel
-    alert('Exportação Excel em desenvolvimento');
-}); 
+const exportarExcelBtn = document.getElementById('exportarExcel');
+if (exportarExcelBtn) {
+    exportarExcelBtn.addEventListener('click', () => {
+        alert('Exportação Excel em desenvolvimento');
+    });
+} 

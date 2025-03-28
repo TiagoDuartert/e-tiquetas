@@ -1,5 +1,4 @@
 import { doc, getDoc, updateDoc, arrayUnion } from 'https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js';
-import { db } from './firebase-config.js';
 
 let html5QrCode = null;
 
@@ -28,7 +27,7 @@ async function onScanSuccess(decodedText) {
     
     try {
         const [mudancaId, itemNumber] = decodedText.split('-');
-        const itemRef = doc(db, 'mudancas', mudancaId, 'items', itemNumber);
+        const itemRef = doc(window.db, 'mudancas', mudancaId, 'items', itemNumber);
         const itemDoc = await getDoc(itemRef);
         
         if (itemDoc.exists()) {
@@ -37,7 +36,7 @@ async function onScanSuccess(decodedText) {
                 historico: arrayUnion({
                     status: tipoPickup,
                     timestamp: new Date(),
-                    usuario: 'Scanner' // Idealmente, usar autenticação
+                    usuario: 'Scanner'
                 })
             });
             
@@ -62,11 +61,14 @@ function onScanError(error) {
 }
 
 // Event Listeners
-document.getElementById('tipoPickup').addEventListener('change', () => {
-    if (html5QrCode === null) {
-        iniciarScanner();
-    }
-});
+const tipoPickupSelect = document.getElementById('tipoPickup');
+if (tipoPickupSelect) {
+    tipoPickupSelect.addEventListener('change', () => {
+        if (html5QrCode === null) {
+            iniciarScanner();
+        }
+    });
+}
 
 // Inicialização
 document.addEventListener('DOMContentLoaded', iniciarScanner);
