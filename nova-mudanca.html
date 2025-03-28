@@ -46,6 +46,26 @@
             </div>
         </div>
     </div>
+     <!-- Scripts do Firebase -->
+     <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js';
+        import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js';
+
+        // Configuração do Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyAnQsZ5zgb3L85paW2HbFysW-ZI7tN5L4c",
+            authDomain: "e-tiquetas.firebaseapp.com",
+            projectId: "e-tiquetas",
+            storageBucket: "e-tiquetas.firebasestorage.app",
+            messagingSenderId: "428128437153",
+            appId: "1:428128437153:web:281c188305dec3f45641e0",
+            measurementId: "G-KYX0QZ2XY1"
+        };
+
+        // Inicializar Firebase
+        const app = initializeApp(firebaseConfig);
+        window.db = getFirestore(app);
+    </script>
     
     <script src="js/nova-mudanca.js" type="module"></script>
 </body>
