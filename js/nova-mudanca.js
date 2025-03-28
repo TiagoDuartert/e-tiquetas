@@ -1,5 +1,5 @@
 import { collection, addDoc } from 'https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js';
-import { db } from './firebase-config.js';
+import { db } from '/js/firebase-config.js';
 
 const mudancaForm = document.getElementById('mudanca-form');
 
