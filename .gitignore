@@ -1,0 +1,23 @@
+# Arquivos de configuração
+.DS_Store
+.env
+.env.local
+
+# Dependências
+node_modules/
+
+# Arquivos de build
+dist/
+build/
+
+# Logs
+*.log
+
+# Arquivos de IDE/Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Arquivos de configuração do Firebase
+firebase-config.js 

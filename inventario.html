@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventário - E-tiquetas</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 p-3">
+                <img src="img/logo.png" alt="Logo Global" class="logo">
+            </div>
+            
+            <div class="col-12">
+                <div class="form-container">
+                    <h2 class="text-center mb-4">Registro de Item</h2>
+                    <div id="mudancaInfo" class="alert alert-info mb-4"></div>
+                    
+                    <form id="item-form">
+                        <div class="mb-3">
+                            <label for="itemNumber" class="form-label">Número do Item</label>
+                            <input type="text" class="form-control" id="itemNumber" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="packType" class="form-label">Tipo de Embalagem</label>
+                            <select class="form-control" id="packType" required>
+                                <option value="">Selecione...</option>
+                                <option value="caixa">Caixa</option>
+                                <option value="engradado">Engradado</option>
+                                <option value="plastico">Plástico</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="articleDescription" class="form-label">Descrição do Artigo</label>
+                            <textarea class="form-control" id="articleDescription" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="condition" class="form-label">Condição</label>
+                            <select class="form-control" id="condition" required>
+                                <option value="">Selecione...</option>
+                                <option value="novo">Novo</option>
+                                <option value="bom">Bom</option>
+                                <option value="regular">Regular</option>
+                                <option value="ruim">Ruim</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="location" class="form-label">Localização</label>
+                            <input type="text" class="form-control" id="location" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="packedBy" class="form-label">Embalado por</label>
+                            <input type="text" class="form-control" id="packedBy" required>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Salvar Item</button>
+                            <a href="scanner.html" class="btn btn-secondary ms-2">Ir para Scanner</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Scripts do Firebase -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js';
+        import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js';
+
+        // Configuração do Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyAnQsZ5zgb3L85paW2HbFysW-ZI7tN5L4c",
+            authDomain: "e-tiquetas.firebaseapp.com",
+            projectId: "e-tiquetas",
+            storageBucket: "e-tiquetas.firebasestorage.app",
+            messagingSenderId: "428128437153",
+            appId: "1:428128437153:web:281c188305dec3f45641e0",
+            measurementId: "G-KYX0QZ2XY1"
+        };
+
+        // Inicializar Firebase
+        const app = initializeApp(firebaseConfig);
+        window.db = getFirestore(app);
+    </script>
+    
+    <!-- Script da página -->
+    <script src="js/inventario.js" type="module"></script>
+</body>
+</html> 
